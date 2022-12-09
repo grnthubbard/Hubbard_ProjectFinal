@@ -39,7 +39,7 @@ Image* blurring(Image data) {
 	return result;
 }
 
-Image* blur2(Image data) {
+Image* contrast(Image data) {
 	int width = data.getSize().x;
 	int height = data.getSize().y;
 	Image* result = new Image;
@@ -62,8 +62,8 @@ Image* blur2(Image data) {
 					neighborCount++;
 				}
 			}
-			result->setPixel(pixelX, pixelY, Color(redAcc / neighborCount,
-				greenAcc / neighborCount, blueAcc / neighborCount));
+			result->setPixel(pixelX, pixelY, Color(redAcc / 2 / neighborCount,
+				greenAcc / 2 / neighborCount, blueAcc / 2 / neighborCount));
 		}
 	}
 	return result;
@@ -94,7 +94,7 @@ Image* invertColors(Image data) {
 					neighborCount++;
 				}
 			}
-			result->setPixel(pixelX, pixelY, Color(redAcc / neighborCount - 1,
+			result->setPixel(pixelX, pixelY, Color(redAcc / neighborCount,
 				greenAcc / neighborCount, blueAcc / neighborCount));
 		}
 	}
@@ -120,7 +120,7 @@ int main()
 		std::cout << "Let's Get Started!\n";
 		// Second Menu
 		cout << "What effects would you like to be applied to your image?\n";
-		cout << "1. Invert Colors" << endl << "2. Blur" << endl << "3. Gausian Blur"
+		cout << "1. Invert Colors" << endl << "2. Blur" << endl << "3. Contrast"
 			<< endl << "4. Green Screen" << endl << "5. None" << endl;
 		cin >> second_choice;
 
@@ -143,7 +143,7 @@ int main()
 				cout << "Couldn't Load Image" << endl;
 				exit(1);
 			}
-			RenderWindow window(VideoMode(800, 532), "Here's the output");
+			RenderWindow window(VideoMode(800, 532), "Here's your output. It's pretty creepy!");
 			Sprite sprite1;
 			imageTex.loadFromImage(newImage);
 			sprite1.setTexture(imageTex);
@@ -180,10 +180,11 @@ int main()
 			while (true);
 		}
 		case 3:
+			//Gausian Blur
 		{
 			Image sourceImg;
 			sourceImg.loadFromFile("images/Purdue_Pete_modern.jpg");
-			Image* result = blur2(sourceImg);
+			Image* result = contrast(sourceImg);
 			result->saveToFile("images/blur_Purdue_Pete_modern.jpg");
 
 
