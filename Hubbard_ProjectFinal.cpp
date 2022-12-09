@@ -178,6 +178,7 @@ int main()
 			window.draw(sprite1);
 			window.display();
 			while (true);
+			delete "images/blur_Purdue_Pete_modern.jpg";
 		}
 		case 3:
 			//Gausian Blur
@@ -185,10 +186,10 @@ int main()
 			Image sourceImg;
 			sourceImg.loadFromFile("images/Purdue_Pete_modern.jpg");
 			Image* result = contrast(sourceImg);
-			result->saveToFile("images/blur_Purdue_Pete_modern.jpg");
+			result->saveToFile("images/contrast_Purdue_Pete_modern.jpg");
 
 
-			string image = "images/blur_Purdue_Pete_modern.jpg";
+			string image = "images/contrast_Purdue_Pete_modern.jpg";
 			Texture imageTex;
 			Image newImage;
 			newImage = imageTex.copyToImage();
@@ -204,6 +205,7 @@ int main()
 			window.draw(sprite1);
 			window.display();
 			while (true);
+			delete "images/contrast_Purdue_Pete_modern.jpg";
 		}
 		case 4:
 			//Green Screen;
